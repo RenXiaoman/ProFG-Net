@@ -22,6 +22,12 @@ The default proposed trainer is `DIYBoundaryAdaptiveCMSAGAuxTrainer`, which uses
 | `DIYBoundaryCMSAGAuxTrainer` | Non-adaptive full model: WFE + CMSAG + boundary auxiliary supervision |
 | `LearnableDIYBoundaryAdaptiveCMSAGAuxTrainer` | Learnable-wavelet version of ProFG-Net |
 
+## Model overview
+
+![ProFG-Net overview](overview.png)
+
+[Download the model diagram (PDF)](overview.pdf)
+
 ## Requirements
 
 ```bash
@@ -112,6 +118,12 @@ ProFG-Net 是一个面向生物医学图像的频域引导分割网络，基于 
 | `DIYBoundaryAdaptiveCMSAGAuxTrainer` | ProFG-Net（默认）：WFE + 自适应 `W_x` 的 CMSAG + 边界辅助监督 |
 | `DIYBoundaryCMSAGAuxTrainer` | 非自适应完整模型：WFE + CMSAG + 边界辅助监督 |
 | `LearnableDIYBoundaryAdaptiveCMSAGAuxTrainer` | ProFG-Net 的可学习小波版本 |
+
+## 模型概览
+
+![ProFG-Net 模型概览](overview.png)
+
+[下载模型图（PDF）](overview.pdf)
 
 ## 环境依赖
 
