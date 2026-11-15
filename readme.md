@@ -34,11 +34,24 @@ The default proposed trainer is `DIYBoundaryAdaptiveCMSAGAuxTrainer`, which uses
 pip install nnunetv2 torch monai SimpleITK numpy scipy tqdm
 ```
 
-For PI-CAI style lesion detection metrics, also install:
+## Data organization
 
-```bash
-pip install picai_eval report_guided_annotation picai_baseline
+The only public dataset used by ProFG-Net is `Dataset141_FullPICAI`:
+
+```text
+nnUNet/
+└── nnUNet_raw/
+    └── Dataset141_FullPICAI/
+        ├── dataset.json
+        ├── splits_final.json
+        ├── build_dataset141.py
+        ├── imagesTr/
+        │   └── <case_id>_0000.nii.gz
+        └── labelsTr/
+            └── <case_id>.nii.gz
 ```
+
+`splits_final.json` contains only the validation split (`val`) for `Dataset141_FullPICAI`.
 
 ## 1. Training
 
@@ -59,7 +72,7 @@ CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 141 3d_fullres 0 \
     -tr DIYBoundaryAdaptiveCMSAGAuxTrainer
 ```
 
-Replace `141` with your dataset ID and `3d_fullres` with the nnU-Net configuration you want. To use a different model variant, change `-tr` to `DIYBoundaryCMSAGAuxTrainer` or `LearnableDIYBoundaryAdaptiveCMSAGAuxTrainer`.
+`141` refers to `Dataset141_FullPICAI`. To use a different model variant, change `-tr` to `DIYBoundaryCMSAGAuxTrainer` or `LearnableDIYBoundaryAdaptiveCMSAGAuxTrainer`.
 
 ## 2. Inference
 
@@ -87,17 +100,6 @@ python compute_seg_metrics.py \
     --pred_dir /path/to/output \
     --gt_dir /path/to/labelsTs \
     --output_name proFG_net_metrics.json
-```
-
-For PI-CAI lesion detection evaluation, use:
-
-```bash
-python detection_tool/eval.py \
-    --task Dataset2302_FullPI-CAI \
-    --trainer UNetDetectionTrainer \
-    --workdir /path/to/nnUNetv2 \
-    --task_dir /path/to/inference_output \
-    --checkpoints checkpoint_best
 ```
 
 The main trainer and network implementations are under `nnunetv2/training/nnUNetTrainer/FreGNetTrain/`.
@@ -131,11 +133,24 @@ ProFG-Net 是一个面向生物医学图像的频域引导分割网络，基于 
 pip install nnunetv2 torch monai SimpleITK numpy scipy tqdm
 ```
 
-如需进行 PI-CAI 风格的病灶检测指标评估，还需安装：
+## 数据组织格式
 
-```bash
-pip install picai_eval report_guided_annotation picai_baseline
+ProFG-Net 唯一使用的公开数据集是 `Dataset141_FullPICAI`：
+
+```text
+nnUNet/
+└── nnUNet_raw/
+    └── Dataset141_FullPICAI/
+        ├── dataset.json
+        ├── splits_final.json
+        ├── build_dataset141.py
+        ├── imagesTr/
+        │   └── <case_id>_0000.nii.gz
+        └── labelsTr/
+            └── <case_id>.nii.gz
 ```
+
+`splits_final.json` 仅包含 `Dataset141_FullPICAI` 的验证集（`val`）。
 
 ## 1. 训练代码
 
@@ -156,7 +171,7 @@ CUDA_VISIBLE_DEVICES=0 nnUNetv2_train 141 3d_fullres 0 \
     -tr DIYBoundaryAdaptiveCMSAGAuxTrainer
 ```
 
-请将 `141` 替换为你的数据集 ID，将 `3d_fullres` 替换为所需的 nnU-Net 配置。如需切换模型变体，将 `-tr` 改为 `DIYBoundaryCMSAGAuxTrainer` 或 `LearnableDIYBoundaryAdaptiveCMSAGAuxTrainer`。
+`141` 对应 `Dataset141_FullPICAI`。如需切换模型变体，将 `-tr` 改为 `DIYBoundaryCMSAGAuxTrainer` 或 `LearnableDIYBoundaryAdaptiveCMSAGAuxTrainer`。
 
 ## 2. 推理代码
 
@@ -184,17 +199,6 @@ python compute_seg_metrics.py \
     --pred_dir /path/to/output \
     --gt_dir /path/to/labelsTs \
     --output_name proFG_net_metrics.json
-```
-
-如需进行 PI-CAI 病灶检测指标评估，使用：
-
-```bash
-python detection_tool/eval.py \
-    --task Dataset2302_FullPI-CAI \
-    --trainer UNetDetectionTrainer \
-    --workdir /path/to/nnUNetv2 \
-    --task_dir /path/to/inference_output \
-    --checkpoints checkpoint_best
 ```
 
 主要训练器与网络实现位于 `nnunetv2/training/nnUNetTrainer/FreGNetTrain/`。
