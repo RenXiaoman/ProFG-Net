@@ -28,6 +28,12 @@ The default proposed trainer is `DIYBoundaryAdaptiveCMSAGAuxTrainer`, which uses
 
 [Download the model diagram (PDF)](overview.pdf)
 
+## Model weights
+
+Download the trained ProFG-Net weights from Google Drive:
+
+[Download weights (Google Drive)](https://drive.google.com/file/d/1gn_wMBvnhCI2cmPIjkn19NTRlhcT3FGs/view?usp=share_link)
+
 ## Requirements
 
 ```bash
@@ -126,6 +132,12 @@ ProFG-Net 是一个面向生物医学图像的频域引导分割网络，基于 
 ![ProFG-Net 模型概览](overview.png)
 
 [下载模型图（PDF）](overview.pdf)
+
+## 模型权重
+
+通过 Google Drive 下载已训练好的 ProFG-Net 权重：
+
+[下载权重（Google Drive）](https://drive.google.com/file/d/1gn_wMBvnhCI2cmPIjkn19NTRlhcT3FGs/view?usp=share_link)
 
 ## 环境依赖
 
